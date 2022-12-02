@@ -31,11 +31,17 @@ int main()
 		//cout << b.y << endl;
 		//cout << endl << endl;
 
+		//solution opt = fib(fr, 1e-4, 1e-2, 1e-10);
+		//cout << opt.x << endl;
+		//cout << opt.y << endl;
+		//cout << opt.f_calls << endl;
+		//cout << opt.flag << endl;
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 100; j++) {
 				double x0 = 200 * rand_mat(1, 1)() - 100;
 				//double* p = expansion(x0, d, alpha[i], Nmax);
-				double* p = expansion(ff, 100, 1, 1.1, 1000);
+				double* p = expansion(ff, x0, 1, 1.1, 1000);
 				cout << x0 << ";"
 					<< p[0] << ";" << p[1] << ";"
 					<< solution::f_calls

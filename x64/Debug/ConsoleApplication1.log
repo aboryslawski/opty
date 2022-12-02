@@ -1,10 +1,1 @@
-﻿  ConsoleApplication1.cpp
-  main.cpp
-  matrix.cpp
-  ode_solver.cpp
-  opt_alg.cpp
-  solution.cpp
-  user_funs.cpp
-C:\Users\aboryslawski\Downloads\Pliki źródłowe-20221106\ConsoleApplication1\user_funs.cpp(66,14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-  ConsoleApplication1.vcxproj -> C:\Users\aboryslawski\Downloads\Pliki źródłowe-20221106\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
+﻿  ConsoleApplication1.vcxproj -> C:\Users\aboryslawski\Downloads\Pliki źródłowe-20221106\ConsoleApplication1\opty\x64\Debug\ConsoleApplication1.exe

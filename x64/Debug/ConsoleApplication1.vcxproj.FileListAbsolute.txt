@@ -1,1 +1,2 @@
 C:\Users\aboryslawski\Downloads\Pliki źródłowe-20221106\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
+C:\Users\aboryslawski\Downloads\Pliki źródłowe-20221106\ConsoleApplication1\opty\x64\Debug\ConsoleApplication1.exe
