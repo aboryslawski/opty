@@ -39,20 +39,25 @@ int main()
 
 		// --------------------------------------------------------
 
+		cout << "punkt startowy;" << "p[0] z ekspansji;" << "p[1] z ekspansji;" << "f_calls;" << "alpha;" << "wynik opt X z fiba;" << "wynik opt Y z fiba" << endl;
+		double alpha = 0.6;
 		for (int i = 0; i < 3; i++) {
+			alpha += 0.5;
 			for (int j = 0; j < 100; j++) {
 				double punkt_startowy = 200 * rand_mat(1, 1)() - 100;
-				double* p = expansion(ff, punkt_startowy, 1, 1.1, 1000);
+				double* p = expansion(ff, punkt_startowy, 1, alpha, 1000);
 
-				cout << punkt_startowy << ";" << endl << p[0] << ";" << p[1] << ";" << solution::f_calls << ";" << endl;
+				cout << punkt_startowy << ";" << p[0] << ";" << p[1] << ";" << solution::f_calls << ";" << alpha << ";";
 
 				solution::clear_calls();
 				solution opt = fib(fr, p[0], p[1], 1e-10);
-				cout << opt << ";";
+				cout << m2d(opt.x) << ";" << m2d(opt.y) << endl;
 
 				solution::clear_calls();
 			}
 		}
+		string s;
+		cin >> s;
 	}
 	catch (string EX_INFO)
 	{
