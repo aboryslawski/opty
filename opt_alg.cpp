@@ -109,78 +109,9 @@ double* expansion(matrix(*ff)(matrix, matrix, matrix), double x0, double d, doub
 
 solution fib(matrix(*ff)(matrix, matrix, matrix), double a, double b, double epsilon, matrix ud1, matrix ud2)
 {
-	//try
-	//{
-	//	double s = (b - a) / epsilon;
-	//	double k = 0;
-	//	while (true) {
-	//		if (fib_value(k) > s) {
-	//			break;
-	//		}
-	//		k++;
-	//	}
-	//	solution A(a);
-	//	solution B(b); // -> B.x = b;
-	//	solution C(B.x - fib_value(k - 1) / fib_value(k) * (B.x - A.x));
-	//	solution D(A.x + B.x - C.x);
-
-	//	for (int i = 0; i <= (int)k - 3; i++) {
-	//		C.fit_fun(ff, ud1, ud2);
-	//		D.fit_fun(ff, ud1, ud2);
-	//		if (C.y < D.y) {
-	//			B.x = D.x;
-	//		}
-	//		else {
-	//			A.x = C.x;
-	//		}
-	//		C.x = B.x - fib_value(k - i - 2) / fib_value(k - i - 1) * (B.x - A.x);
-	//		D.x = A.x + B.x - C.x;
-	//	}
-	//	return C;
-	//}
-	//catch (string ex_info)
-	//{
-	//	throw ("solution fib(...):\n" + ex_info);
-	//}
-
-	//-------------------------
-
 	try
 	{
-		//double k = 0;
-		//while (true) {
-		//	int val = fib_value(k);
-		//	std::cout << val << "\n";
-		//	if (val > ((b - a) / epsilon)) {
-		//		break;
-		//	}
-		//	++k;
-		//}
 
-		//solution Xopt;
-		//solution A(a);
-		//solution B(b);
-		//solution C;
-		//C.x = B.x - fib_value(k - 1) / fib_value(k) * (B.x - A.x);
-		//solution D;
-		//D.x = A.x + B.x - C.x;
-
-		//for (int i = 0; i <= ((double)k - 3); ++i) {
-		//	C.fit_fun(ff, ud1, ud2);
-		//	D.fit_fun(ff, ud1, ud2);
-		//	if (C.y < D.y) {
-		//		B.x = D.x;
-		//	}
-		//	else {
-		//		A.x = C.x;
-		//	}
-		//	C.x = B.x - fib_value(k - i - 2) / fib_value(k - i - 1) * (B.x - A.x);
-		//	D.x = A.x + B.x - C.x;
-		//}
-
-		//Xopt.x = C.x;
-		//Xopt.fit_fun(ff, ud1, ud2);
-		//return Xopt;
 		int n = static_cast<int>(ceil(log2(sqrt(5) * (b - a) / epsilon) / log2((1 + sqrt(5)) / 2)));
 
 		int* F = new int[n] {1, 1};
@@ -198,6 +129,7 @@ solution fib(matrix(*ff)(matrix, matrix, matrix), double a, double b, double eps
 				B = D;
 			else
 				A = C;
+
 			C.x = B.x - 1.0 * F[n - i - 2] / F[n - i - 1] * (B.x - A.x);
 			D.x = A.x + B.x - C.x;
 			C.fit_fun(ff, ud1, ud2);

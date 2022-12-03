@@ -37,26 +37,20 @@ int main()
 		//cout << opt.f_calls << endl;
 		//cout << opt.flag << endl;
 
+		// --------------------------------------------------------
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 100; j++) {
-				double x0 = 200 * rand_mat(1, 1)() - 100;
-				//double* p = expansion(x0, d, alpha[i], Nmax);
-				double* p = expansion(ff, x0, 1, 1.1, 1000);
-				cout << x0 << ";"
-					<< p[0] << ";" << p[1] << ";"
-					<< solution::f_calls
-					<< ";";
+				double punkt_startowy = 200 * rand_mat(1, 1)() - 100;
+				double* p = expansion(ff, punkt_startowy, 1, 1.1, 1000);
+
+				cout << punkt_startowy << ";" << endl << p[0] << ";" << p[1] << ";" << solution::f_calls << ";" << endl;
 
 				solution::clear_calls();
-
-				//solution opt = fib(p[0], p[1], epsilon);
-				solution opt = fib(fr, p[0], p[1], 1e-2); //umiera przy 1e-10
-				cout << opt << ";;";
+				solution opt = fib(fr, p[0], p[1], 1e-10);
+				cout << opt << ";";
 
 				solution::clear_calls();
-
-				//solution opt_l = lag(p[0], p[1], 1e-10, 1e-200, 1000);
-				//cout << opt_l << ";" << endl;
 			}
 		}
 	}
