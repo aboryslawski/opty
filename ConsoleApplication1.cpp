@@ -50,7 +50,7 @@ int main()
 				cout << punkt_startowy << ";" << p[0] << ";" << p[1] << ";" << solution::f_calls << ";" << alpha << ";";
 
 				solution::clear_calls();
-				solution opt = fib(fr, p[0], p[1], 1e-10);
+				solution opt = fib(ff, p[0], p[1], 1e-5);
 				cout << m2d(opt.x) << ";" << m2d(opt.y) << ";" << solution::f_calls << endl;
 				solution::clear_calls();
 			}
