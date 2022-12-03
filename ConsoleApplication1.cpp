@@ -39,7 +39,7 @@ int main()
 
 		// --------------------------------------------------------
 
-		cout << "punkt startowy;" << "p[0] z ekspansji;" << "p[1] z ekspansji;" << "f_calls;" << "alpha;" << "wynik opt X z fiba;" << "wynik opt Y z fiba" << endl;
+		cout << "punkt startowy;" << "p[0] z ekspansji;" << "p[1] z ekspansji;" << "f_calls dla ekspansji;" << "alpha;" << "wynik opt X z fiba;" << "wynik opt Y z fiba;" << "f_calls dla fiba" << endl;
 		double alpha = 0.6;
 		for (int i = 0; i < 3; i++) {
 			alpha += 0.5;
@@ -51,8 +51,7 @@ int main()
 
 				solution::clear_calls();
 				solution opt = fib(fr, p[0], p[1], 1e-10);
-				cout << m2d(opt.x) << ";" << m2d(opt.y) << endl;
-
+				cout << m2d(opt.x) << ";" << m2d(opt.y) << ";" << solution::f_calls << endl;
 				solution::clear_calls();
 			}
 		}
