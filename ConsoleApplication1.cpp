@@ -45,12 +45,12 @@ int main()
 			alpha += 0.5;
 			for (int j = 0; j < 100; j++) {
 				double punkt_startowy = 200 * rand_mat(1, 1)() - 100;
-				double* p = expansion(ff, punkt_startowy, 1, alpha, 1000);
+				double* p = expansion(fr, punkt_startowy, 1, alpha, 1000);
 
 				cout << punkt_startowy << ";" << p[0] << ";" << p[1] << ";" << solution::f_calls << ";" << alpha << ";";
 
 				solution::clear_calls();
-				solution opt = fib(ff, p[0], p[1], 1e-5);
+				solution opt = fib(fr, p[0], p[1], 1e-10);
 				cout << m2d(opt.x) << ";" << m2d(opt.y) << ";" << solution::f_calls << endl;
 				solution::clear_calls();
 			}
