@@ -6,7 +6,7 @@ matrix ff(matrix x, matrix ud1, matrix ud2)
 {
     matrix y;
     //y = -cos(0.1 * x()) * exp(-(pow((0.1 * x()) - (2 * _Pi)), 2)) + (0.002 * pow(0.1 * x(), 2));
-    y = (-cos(0.1 * x()) * pow(2.72, -(pow(0.1 * x() - (2 * _Pi), 2)))) + (0.002 * pow((0.1 * x()), 2));
+    y = (-cos(0.1 * x()) * pow(2.72, -(pow(0.1 * x() - (2 * M_PI), 2)))) + (0.002 * pow((0.1 * x()), 2));
     return y;
 }
 
@@ -37,7 +37,7 @@ double gg(double x)
 
     //exp(-(pow(0.1 * x - (2 * 3.14)), 2)))
 
-    y = ( - cos(0.1 * x) * pow(2.72, -(pow(0.1 * x - (2 * _Pi), 2)))) + (0.002 * pow((0.1 * x), 2));
+    y = ( - cos(0.1 * x) * pow(2.72, -(pow(0.1 * x - (2 * M_PI), 2)))) + (0.002 * pow((0.1 * x), 2));
 
     printf("\n");
     printf("%f\n", y);
@@ -97,4 +97,8 @@ matrix fr(matrix x, matrix ud1, matrix ud2)
     }
     y = abs(max - 50);
     return y;
+}
+
+matrix test_fun2(matrix x1, matrix x2, matrix ud1, matrix ud2) {
+    return pow(x1(), 2) + pow(x1(), 2) - cos(2.5 * M_PI * x1()) - cos(2.5 * M_PI * x2()) + 2;
 }

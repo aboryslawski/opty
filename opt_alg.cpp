@@ -162,10 +162,28 @@ solution HJ(matrix(*ff)(matrix, matrix, matrix), matrix x0, double s, double alp
 {
 	try
 	{
-		solution Xopt;
+        solution Xopt(x0), XoptTemp, x;
 		//Tu wpisz kod funkcji
+        do {
 
-		return Xopt;
+            Xopt = x;
+            x = HJ_trial(ff, Xopt, s);
+
+            if (x.fit_fun(ff, ud1, ud2) < Xopt.fit_fun(ff, ud1, ud2)) {
+                do {
+                    XoptTemp = Xopt;
+                    Xopt = x;
+                    x = 2.0 * Xopt.x - XoptTemp.x;
+                    x = HJ_trial(ff, x, s);
+                    if (solution::f_calls > Nmax) throw ("f_calls > Nmax");
+                } while (x.fit_fun(ff, ud1, ud2) >= Xopt.fit_fun(ff, ud1, ud2));
+                x = Xopt;
+            } else s *= alpha;
+            if (solution::f_calls > Nmax) throw ("f_calls > Nmax");
+
+        } while (s < epsilon);
+
+        return Xopt;
 	}
 	catch (string ex_info)
 	{
@@ -178,8 +196,21 @@ solution HJ_trial(matrix(*ff)(matrix, matrix, matrix), solution XB, double s, ma
 	try
 	{
 		//Tu wpisz kod funkcji
-
-		return XB;
+        int n = get_dim(XB);
+        matrix e = ident_mat(n);
+        solution x;
+        for (int j = 1; j < n; j++) {
+            x.x = XB.x + s * e[j];
+            if (x.fit_fun(ff, ud1, ud2) < XB.fit_fun(ff, ud1, ud2)) {
+                XB = x;
+            } else {
+                x.x = XB.x - s * e[j];
+                if (x.fit_fun(ff, ud1, ud2) < XB.fit_fun(ff, ud1, ud2)) {
+                    XB = x;
+                }
+            }
+        }
+        return XB;
 	}
 	catch (string ex_info)
 	{
