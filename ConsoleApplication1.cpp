@@ -30,7 +30,6 @@ int main()
 		cerr << "ERROR:\n";
 		cerr << EX_INFO << endl << endl;
 	}
-	system("pause");
 	return 0;
 }
 
@@ -77,14 +76,22 @@ void lab1()
 void lab2()
 {
     //funkcja testowa - 100 optymalizacji dla 3 różnych długości kroku s
-    double s = 0.2;
+    double s = 0.1;
+    double alphaH = 0.5;
+    double elipson = 1e-3;
+    int maxFCalls = 1000;
+    solution wynik;
+    matrix x0;
+    cout << "x1;x2;wynik\n";
     for (int i = 0; i<3; i++) {
-        for (int j = 0; i < 100; i++) {
-            double punkt_startowy_x1 = rand_mat(1, 1)() - 1;
-            double punkt_startowy_x2 = rand_mat(1, 1)() - 1;
-            cout << punkt_startowy_x1 << " | " << punkt_startowy_x2 << endl;
+        for (int j = 0; j < 100; j++) {
+            x0 =  2.0 * rand_mat(2, 1) - 1.0;
+            cout << x0;
+            wynik = HJ(ff2, x0, s, alphaH, elipson, maxFCalls);
+            cout << wynik << solution::f_calls << endl;
+            solution::clear_calls();
         }
-        s += 0.2;
+        s += 0.4;
     }
 }
 

@@ -160,62 +160,62 @@ solution lag(matrix(*ff)(matrix, matrix, matrix), double a, double b, double eps
 
 solution HJ(matrix(*ff)(matrix, matrix, matrix), matrix x0, double s, double alpha, double epsilon, int Nmax, matrix ud1, matrix ud2)
 {
-	try
-	{
-        solution Xopt(x0), XoptTemp, x;
-		//Tu wpisz kod funkcji
+    try
+    {
+        solution xopt(x0), xoptPrev, x;
+        xopt.fit_fun(ff, ud1, ud2);
+        int i = 1;
         do {
-
-            Xopt = x;
-            x = HJ_trial(ff, Xopt, s);
-
-            if (x.fit_fun(ff, ud1, ud2) < Xopt.fit_fun(ff, ud1, ud2)) {
+            x = HJ_trial(ff, xopt, s);
+            if (x.y < xopt.y) {
                 do {
-                    XoptTemp = Xopt;
-                    Xopt = x;
-                    x = 2.0 * Xopt.x - XoptTemp.x;
+                    xoptPrev = xopt;
+                    xopt = x;
+                    x.x = 2.0 * xopt.x - xoptPrev.x;
+                    x.fit_fun(ff, ud1, ud2);
                     x = HJ_trial(ff, x, s);
-                    if (solution::f_calls > Nmax) throw ("f_calls > Nmax");
-                } while (x.fit_fun(ff, ud1, ud2) >= Xopt.fit_fun(ff, ud1, ud2));
-                x = Xopt;
-            } else s *= alpha;
-            if (solution::f_calls > Nmax) throw ("f_calls > Nmax");
-
-        } while (s < epsilon);
-
-        return Xopt;
-	}
-	catch (string ex_info)
-	{
-		throw ("solution HJ(...):\n" + ex_info);
-	}
+                    if (solution::f_calls > Nmax) throw ("Too many iterations");
+                } while (x.fit_fun(ff, ud1, ud2) < xopt.fit_fun(ff, ud1, ud2));
+            }
+            else {
+                s *= alpha;
+            }
+            if (solution::f_calls > Nmax) throw ("Too many iterations");
+        } while (s >= epsilon);
+        return xopt;
+    }
+    catch (string ex_info)
+    {
+        throw ("solution HJ(...):\n" + ex_info);
+    }
 }
 
 solution HJ_trial(matrix(*ff)(matrix, matrix, matrix), solution XB, double s, matrix ud1, matrix ud2)
 {
-	try
-	{
-		//Tu wpisz kod funkcji
+    try
+    {
         int n = get_dim(XB);
         matrix e = ident_mat(n);
         solution x;
-        for (int j = 1; j < n; j++) {
-            x.x = XB.x + s * e[j];
-            if (x.fit_fun(ff, ud1, ud2) < XB.fit_fun(ff, ud1, ud2)) {
+        for (int i = 0; i < n; i++) {
+            x.x = XB.x + s * e[i];
+            x.fit_fun(ff, ud1, ud2);
+            if (x.y < XB.y) {
                 XB = x;
             } else {
-                x.x = XB.x - s * e[j];
-                if (x.fit_fun(ff, ud1, ud2) < XB.fit_fun(ff, ud1, ud2)) {
+                x.x = XB.x - s * e[i];
+                x.fit_fun(ff, ud1, ud2);
+                if (x.y < XB.y) {
                     XB = x;
                 }
             }
         }
         return XB;
-	}
-	catch (string ex_info)
-	{
-		throw ("solution HJ_trial(...):\n" + ex_info);
-	}
+    }
+    catch (string ex_info)
+    {
+        throw ("solution HJ_trial(...):\n" + ex_info);
+    }
 }
 
 solution Rosen(matrix(*ff)(matrix, matrix, matrix), matrix x0, matrix s0, double alpha, double beta, double epsilon, int Nmax, matrix ud1, matrix ud2)

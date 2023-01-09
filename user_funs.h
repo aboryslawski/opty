@@ -13,3 +13,5 @@ double fib_value(double k);
 
 matrix fr(matrix x, matrix ud1, matrix ud2);
 matrix df(double t, matrix Y, matrix ud1, matrix ud2);
+
+matrix ff2(matrix x1, matrix ud1, matrix ud2);

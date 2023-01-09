@@ -1,4 +1,4 @@
-//Ten plik nie powinien byæ edytowany
+//Ten plik nie powinien byï¿½ edytowany
 
 #include"matrix.h"
 
@@ -566,17 +566,17 @@ ostream& operator<<(ostream& OS, const matrix& A)
 	{
 		for (int j = 0; j < nA[1]; ++j)
 		{
-			//OSS << A(i, j);
+			OSS << A(i, j);
 			S = OSS.str();
 			OSS.str("");
 			p = S.find('.');
 			if (p != string::npos)
 				S[p] = SEP_SYMBOL;
-			//OS << S << "; ";
+			OS << S << "; ";
 		}
 		if (i == nA[0] - 1)
 			return OS;
-		//OS << endl;
+//		OS << endl;
 	}
 }
 

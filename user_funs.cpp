@@ -99,6 +99,8 @@ matrix fr(matrix x, matrix ud1, matrix ud2)
     return y;
 }
 
-matrix test_fun2(matrix x1, matrix x2, matrix ud1, matrix ud2) {
-    return pow(x1(), 2) + pow(x1(), 2) - cos(2.5 * M_PI * x1()) - cos(2.5 * M_PI * x2()) + 2;
+matrix ff2(matrix x1, matrix ud1, matrix ud2) {
+    matrix y;
+    y = pow(x1(0), 2) + pow(x1(1), 2) - cos(2.5 * M_PI * x1(0)) - cos(2.5 * M_PI * x1(1)) + 2;
+    return y;
 }

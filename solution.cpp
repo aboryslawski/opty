@@ -1,4 +1,4 @@
-//Ten plik nie powinien byæ edytowany
+//Ten plik nie powinien byï¿½ edytowany
 
 #include"solution.h"
 
@@ -119,14 +119,16 @@ matrix solution::hess(matrix(*Hf)(matrix, matrix, matrix), matrix ud1, matrix ud
 
 ostream& operator<<(ostream& S, const solution& A)
 {
-	//S << "x = " << A.x << endl;
-	//S << "y = " << A.y << endl;
-	//S << "f_calls = " << solution::f_calls << endl;
+//	S << "x = " << A.x << endl;
+	S << A.x << ";";
+//	S << "y = " << A.y << endl;
+	S << A.y << ";";
+//	S << "f_calls = " << solution::f_calls << endl;
 	if (solution::g_calls > 0)
 		S << "g_calls = " << solution::g_calls << endl;
 	if (solution::H_calls > 0)
 		S << "H_calls = " << solution::H_calls << endl;
-	//S << "Exit flag: " << A.flag << endl;
+//	S << "Exit flag: " << A.flag << endl;
 	return S;
 }
 
