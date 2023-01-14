@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.23)
+project(opty)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(opty ConsoleApplication1.cpp matrix.cpp ode_solver.cpp opt_alg.cpp solution.cpp user_funs.cpp)
