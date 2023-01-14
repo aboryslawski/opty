@@ -75,24 +75,40 @@ void lab1()
 
 void lab2()
 {
-    //funkcja testowa - 100 optymalizacji dla 3 różnych długości kroku s
+    // funkcja testowa po 100 opt dla 3 roznych kroków s (s+=0.4)
     double s = 0.1;
     double alphaH = 0.5;
     double elipson = 1e-3;
     int maxFCalls = 1000;
     solution wynik;
     matrix x0;
-    cout << "x1;x2;wynik\n";
-    for (int i = 0; i<3; i++) {
-        for (int j = 0; j < 100; j++) {
-            x0 =  2.0 * rand_mat(2, 1) - 1.0;
-            cout << x0;
-            wynik = HJ(ff2, x0, s, alphaH, elipson, maxFCalls);
-            cout << wynik << solution::f_calls << endl;
-            solution::clear_calls();
-        }
-        s += 0.4;
-    }
+//    cout << "x1;x2;wynik\n";
+//    for (int i = 0; i<3; i++) {
+//        for (int j = 0; j < 100; j++) {
+//            x0 =  2.0 * rand_mat(2, 1) - 1.0;
+//            cout << x0;
+//            wynik = HJ(ff2, x0, s, alphaH, elipson, maxFCalls);
+//            cout << wynik << solution::f_calls << endl;
+//            solution::clear_calls();
+//        }
+//        s += 0.4;
+//    }
+
+
+    // optymalizacja problemu rzeczywistego
+//    s = 2.6;
+//    x0 = 10.0 * rand_mat(2, 1);
+//    cout << "x0: " << x0 << endl;
+//    wynik = HJ(fT2, x0, s, alphaH, elipson, maxFCalls);
+//    cout << wynik << endl;
+//    solution::clear_calls();
+
+//    double *k = ;
+    matrix x = matrix(2, new double[2]{ 2.75252, 2.99243 });
+    wynik = x;
+    wynik.fit_fun(fT2);
+
+
 }
 
 void lab3()
