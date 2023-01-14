@@ -75,13 +75,32 @@ void lab1()
 
 void lab2()
 {
-    // funkcja testowa po 100 opt dla 3 roznych kroków s (s+=0.4)
+
+    // funkcja testowa ramie robota
     double s = 0.1;
     double alphaH = 0.5;
     double elipson = 1e-3;
     int maxFCalls = 1000;
     solution wynik;
     matrix x0;
+
+//    x0 = 2 * rand_mat(2, 1) - 1;
+//    cout << x0 << endl << endl;
+//    wynik = HJ(ff2, x0, s, alphaH, elipson, maxFCalls);
+//    cout << wynik << endl << endl;
+//    solution::clear_calls();
+//
+//    //Ramie robota
+//    s = 2;
+//    x0 = 10 * rand_mat(2, 1);
+//    cout << x0 << endl << endl;
+//    wynik = HJ(fT2, x0, s, alphaH, elipson, maxFCalls);
+//    cout << wynik << endl << endl;
+//    solution::clear_calls();
+
+
+    // funkcja testowa po 100 opt dla 3 roznych kroków s (s+=0.4)
+
 //    cout << "x1;x2;wynik\n";
 //    for (int i = 0; i<3; i++) {
 //        for (int j = 0; j < 100; j++) {
@@ -96,17 +115,17 @@ void lab2()
 
 
     // optymalizacja problemu rzeczywistego
-//    s = 2.6;
-//    x0 = 10.0 * rand_mat(2, 1);
-//    cout << "x0: " << x0 << endl;
-//    wynik = HJ(fT2, x0, s, alphaH, elipson, maxFCalls);
-//    cout << wynik << endl;
-//    solution::clear_calls();
+    s = 2.6;
+    x0 = 10.0 * rand_mat(2, 1);
+    cout << "x0: " << x0 << endl;
+    wynik = HJ(fT2, x0, s, alphaH, elipson, maxFCalls);
+    cout << wynik << endl;
+    solution::clear_calls();
 
 //    double *k = ;
-    matrix x = matrix(2, new double[2]{ 2.75252, 2.99243 });
-    wynik = x;
-    wynik.fit_fun(fT2);
+//    matrix x = matrix(2, new double[2]{ 2.75252, 2.99243 });
+//    wynik = x;
+//    wynik.fit_fun(fT2);
 
 
 }

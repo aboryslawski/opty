@@ -114,7 +114,7 @@ matrix df2(double t, matrix y, matrix ud1, matrix ud2)
     dY(1) = (ud2(0) * (ud1(0) - y(0)) + ud2(1) * (ud1(1) - y(1)) - b * y(1)) / I;
 
 //    cout << "t, alpha, omega: ";
-    cout << t << "; " << y(0) << "; " << y(1) << endl;
+//    cout << t << "; " << y(0) << "; " << y(1) << endl;
 
     return dY;
 }
