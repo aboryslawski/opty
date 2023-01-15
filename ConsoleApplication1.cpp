@@ -31,6 +31,18 @@ int main()
 		cerr << EX_INFO << endl << endl;
 	}
 	return 0;
+
+//    try
+//    {
+//        lab3();
+//    }
+//
+//    catch (string EX_INFO)
+//    {
+//        cerr << "ERROR:\n";
+//        cerr << EX_INFO << endl << endl;
+//    }
+//    return 0;
 }
 
 void lab1()
@@ -132,6 +144,65 @@ void lab2()
 
 void lab3()
 {
+    double epsilon = 1e-3;
+    int maxFCalls = 1000;
+    solution wynik;
+    matrix x0;
+    double h0;
+
+    //======testowa funkcja celu======
+    //===długość kroku: 0.05 ===
+    h0 = 0.05;
+    //wyniki dla metody najszybszego spadku
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
+
+
+    //wyniki dla metody gradientów sprzężonych
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
+
+    //wyniki dla metody Newtona
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
+
+    //===długość kroku: 0.12 ===
+    //wyniki dla metody najszybszego spadku
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
+
+
+    //wyniki dla metody gradientów sprzężonych
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
+
+    //wyniki dla metody Newtona
+    for (int i = 0; i < 100; i++) {
+        x0 = 20 * rand_mat(2, 1) - 10;
+        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+        cout << wynik << endl << endl;
+        solution::clear_calls();
+    }
 
 }
 
