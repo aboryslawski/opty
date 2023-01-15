@@ -134,3 +134,25 @@ matrix fT2(matrix x, matrix ud1, matrix ud2)
     y = y * 0.1;
     return y;
 }
+
+//lab 3 - funkcja testowa
+
+matrix ff4T(matrix x, matrix ud1, matrix ud2) {
+    matrix y;
+    y = pow(x(0) + 2 * x(1) - 7,2) + pow(2 * x(0) + x(1) - 5, 2);
+    return y;
+}
+
+matrix gf4T(matrix x, matrix ud1, matrix ud2) {
+    matrix g(2, 1);
+    g(0) = 10 * x(0) + 8 * x(1) - 34;
+    g(1) = 8 * x(0) + 10 * x(1) - 38;
+    return g;
+}
+
+matrix Hf4T(matrix x, matrix ud1, matrix ud2) {
+    matrix H(2, 2);
+    H(0, 0) = H(1, 1) = 10;
+    H(0, 1) = H(1, 0) = 8;
+    return H;
+}
