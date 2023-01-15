@@ -135,7 +135,7 @@ matrix fT2(matrix x, matrix ud1, matrix ud2)
     return y;
 }
 
-//lab 3 - funkcja testowa
+//lab 4 - funkcja testowa
 
 matrix ff4T(matrix x, matrix ud1, matrix ud2) {
     matrix y;
@@ -155,4 +155,31 @@ matrix Hf4T(matrix x, matrix ud1, matrix ud2) {
     H(0, 0) = H(1, 1) = 10;
     H(0, 1) = H(1, 0) = 8;
     return H;
+}
+
+// lab 4 - funkcja celu
+matrix ff4R(matrix x, matrix ud1, matrix ud2) {
+    matrix y;
+    int m = 100;
+    int n = get_len(x);
+    static matrix X(n, m), Y(1, m);
+    static bool read = true;
+    if (read) {
+        ifstream S("XData.txt");
+        S >> X;
+        S.close();
+        S.open(("Ydata.txt"));
+        S >> Y;
+        S.close();
+        read = false;
+    }
+    double h;
+    y = 0;
+    for (int i = 0; i < m; ++i) {
+        h = m2d(trans(x) * X[i]); //θ (theta)
+        h = 1.0 / (1.0 + exp(-h));
+        y = y - Y(0, i) * log(h) - (1 - Y(0, i)) * log(1 - h);
+    }
+    y = y / m;
+    return y;
 }
