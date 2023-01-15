@@ -34,7 +34,7 @@ int main()
 
 //    try
 //    {
-//        lab3();
+//        lab4();
 //    }
 //
 //    catch (string EX_INFO)
@@ -144,6 +144,11 @@ void lab2()
 
 void lab3()
 {
+
+}
+
+void lab4()
+{
     double epsilon = 1e-3;
     int maxFCalls = 1000;
     solution wynik;
@@ -203,11 +208,6 @@ void lab3()
         cout << wynik << endl << endl;
         solution::clear_calls();
     }
-
-}
-
-void lab4()
-{
 
 }
 
