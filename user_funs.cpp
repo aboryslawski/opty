@@ -177,9 +177,37 @@ matrix ff4R(matrix x, matrix ud1, matrix ud2) {
     y = 0;
     for (int i = 0; i < m; ++i) {
         h = m2d(trans(x) * X[i]); //θ (theta)
+        cout << "θ = " << h << endl;
         h = 1.0 / (1.0 + exp(-h));
-        y = y - Y(0, i) * log(h) - (1 - Y(0, i)) * log(1 - h);
+        y = y - Y(0, i) * log(h) - (1 - Y(0, i)) * log(1 - h); //J(θ)
     }
     y = y / m;
     return y;
+}
+
+matrix gf4r(matrix x, matrix ud1, matrix ud2) {
+    int m = 100;
+    int n = get_len(x);
+    matrix g(n, 1);
+    static matrix X(n, m), Y(1, m);
+    static bool read = true;
+    if (read) {
+        ifstream S("XData.txt");
+        S >> X;
+        S.close();
+        S.open(("Ydata.txt"));
+        S >> Y;
+        S.close();
+        read = false;
+    }
+    double h;
+    for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < m; ++i) {
+            h = m2d(trans(x) * X[i]);
+            h = 1 / (1 + exp(-h));
+            g(j) = g(j) + X(j, i) * (h - Y(0, i)); //pochodne cząstkowe J(θ)
+        }
+        g(j) = g(j) / m;
+    }
+    return g;
 }

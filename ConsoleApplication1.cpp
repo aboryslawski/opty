@@ -9,6 +9,9 @@ Akademia Górniczo-Hutnicza
 
 #include"opt_alg.h"
 #include "user_funs.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 
 void lab1();
@@ -20,29 +23,30 @@ void lab5();
 int main()
 {
 
-	try
-	{
-        lab2();
-	}
 
-	catch (string EX_INFO)
-	{
-		cerr << "ERROR:\n";
-		cerr << EX_INFO << endl << endl;
-	}
-	return 0;
-
-//    try
-//    {
-//        lab4();
-//    }
+//	try
+//	{
+//        lab2();
+//	}
 //
-//    catch (string EX_INFO)
-//    {
-//        cerr << "ERROR:\n";
-//        cerr << EX_INFO << endl << endl;
-//    }
-//    return 0;
+//	catch (string EX_INFO)
+//	{
+//		cerr << "ERROR:\n";
+//		cerr << EX_INFO << endl << endl;
+//	}
+//	return 0;
+
+    try
+    {
+        lab4();
+    }
+
+    catch (string EX_INFO)
+    {
+        cerr << "ERROR:\n";
+        cerr << EX_INFO << endl << endl;
+    }
+    return 0;
 }
 
 void lab1()
@@ -158,56 +162,131 @@ void lab4()
     //======testowa funkcja celu======
     //===długość kroku: 0.05 ===
     h0 = 0.05;
-    //wyniki dla metody najszybszego spadku
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
+
+//    //wyniki dla metody najszybszego spadku
+//    cout << "Funkcja testowa - metoda najszybszego spadku (h0 = 0.05) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20.0 * rand_mat(2, 1) - 10.0;
+//        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+//    //wyniki dla metody gradientów sprzężonych
+//    cout << "Funkcja testowa - metoda gradientów sprzężonych (h0 = 0.05) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20 * rand_mat(2, 1) - 10;
+//        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+//    //wyniki dla metody Newtona
+//    cout << "Funkcja testowa - metoda Newtona (h0 = 0.05) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls;H_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20 * rand_mat(2, 1) - 10;
+//        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << ";" << solution::H_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+//    //===długość kroku: 0.12 ===
+//    h0 = 0.12;
+//    //wyniki dla metody najszybszego spadku
+//    cout << "Funkcja testowa - metoda najszybszego spadku (h0 = 0.12) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20.0 * rand_mat(2, 1) - 10.0;
+//        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+//    //wyniki dla metody gradientów sprzężonych
+//    cout << "Funkcja testowa - metoda gradientów sprzężonych (h0 = 0.12) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20 * rand_mat(2, 1) - 10;
+//        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+//    //wyniki dla metody Newtona
+//    cout << "Funkcja testowa - metoda Newtona (h0 = 0.12) x100" << endl;
+//    cout << "x01;x02;x1;x2;y;g_calls;H_calls" << endl;
+//    for (int i = 0; i < 100; i++) {
+//        x0 = 20 * rand_mat(2, 1) - 10;
+//        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+//        cout << x0 << wynik.x << wynik.y << solution::g_calls << ";" << solution::H_calls << endl;
+//        solution::clear_calls();
+//    }
+//
+    x0 = 20 * rand_mat(2, 1) - 10;
+    h0 = 0.05;
+    cout << x0 << endl;
+    //metoda najszybszego spadku - po każdej iteracji (h0 = 0.05)
+    cout << "Funkcja testowa - metoda najszybszego spadku (h0 = 0.05) po każdej iteracji" << endl;
+    cout << "x1;x2;" << endl;
+    SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
+
+    //metoda gradientów sprzężonych - po każdej iteracji (h0 = 0.05)
+    cout << "Funkcja testowa - metoda gradientów sprzężonych (h0 = 0.05) po każdej iteracji" << endl;
+    cout << "x1;x2" << endl;
+    CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
+
+    //metoda Newtona - po każdej iteracji (h0 = 0.05)
+    cout << "Funkcja testowa - metoda Newtona (h0 = 0.05) po każdej iteracji" << endl;
+    cout << "x1;x2" << endl;
+    Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
+
+    h0 = 0.12;
+    //metoda najszybszego spadku - po każdej iteracji (h0 = 0.12)
+    cout << "Funkcja testowa - metoda najszybszego spadku (h0 = 0.12) po każdej iteracji" << endl;
+    cout << "x1;x2" << endl;
+    SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
+
+    //metoda gradientów sprzężonych - po każdej iteracji (h0 = 0.12)
+    cout << "Funkcja testowa - metoda gradientów sprzężonych (h0 = 0.12) po każdej iteracji" << endl;
+    cout << "x1;x2" << endl;
+    CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
+
+    //metoda Newtona - po każdej iteracji (h0 = 0.12)
+    cout << "Funkcja testowa - metoda Newtona (h0 = 0.12) po każdej iteracji" << endl;
+    cout << "x1;x2" << endl;
+    Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
+    solution::clear_calls();
 
 
-    //wyniki dla metody gradientów sprzężonych
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
-
-    //wyniki dla metody Newtona
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
-
-    //===długość kroku: 0.12 ===
-    //wyniki dla metody najszybszego spadku
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = SD(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
-
-
-    //wyniki dla metody gradientów sprzężonych
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = CG(ff4T, gf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
-
-    //wyniki dla metody Newtona
-    for (int i = 0; i < 100; i++) {
-        x0 = 20 * rand_mat(2, 1) - 10;
-        wynik = Newton(ff4T, gf4T, Hf4T, x0, h0, epsilon, maxFCalls);
-        cout << wynik << endl << endl;
-        solution::clear_calls();
-    }
+    //problem rzeczywisty (h0 = 0.01)
+//    h0 = 0.01;
+//    cout << "Problem rzeczywisty - metoda gradientów (h0 = 0.01)" << endl;
+//    wynik = CG(ff4R, gf4r, x0, h0, epsilon, maxFCalls);
+//    cout << x0 << wynik.x << solution::g_calls << endl;
+//
+//    solution::clear_calls();
+//
+//    //problem rzeczywisty (h0 = 0.001)
+//    h0 = 0.001;
+//    wynik = CG(ff4R, gf4r, x0, h0, epsilon, maxFCalls);
+//    cout << x0 << wynik.x << solution::g_calls << endl;
+//
+//    solution::clear_calls();
+//
+//    //problem rzeczywisty (h0 = 0.0001)
+//    h0 = 0.0001;
+//    wynik = CG(ff4R, gf4r, x0, h0, epsilon, maxFCalls);
+//    cout << x0 << wynik.x << solution::g_calls << endl;
+//
+//    solution::clear_calls();
 
 }
 

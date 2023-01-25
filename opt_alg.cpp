@@ -294,6 +294,7 @@ solution SD(matrix(*ff)(matrix, matrix, matrix), matrix(*gf)(matrix, matrix, mat
                 break;
             }
             X0 = X1;
+            cout << X0.x <<endl;
         }
 		return Xopt;
 	}
@@ -327,7 +328,7 @@ solution CG(matrix(*ff)(matrix, matrix, matrix), matrix(*gf)(matrix, matrix, mat
                 Xopt.flag = 0;
                 break;
             }
-            cout << norm(X0.x - X1.x) << "\t" << epsilon << endl;
+//            cout << norm(X0.x - X1.x) << "\t" << epsilon << endl;
             if (solution::f_calls > Nmax || solution::g_calls > Nmax) {
                 Xopt = X1;
                 Xopt.fit_fun(ff, ud1, ud2);
@@ -337,6 +338,7 @@ solution CG(matrix(*ff)(matrix, matrix, matrix), matrix(*gf)(matrix, matrix, mat
             beta = pow(norm(X1.grad(gf, ud1, ud2)), 2) / pow(norm(X0.g), 2);
             d = -X1.g + beta * d;
             X0 = X1;
+            cout << X0.x <<endl;
         }
 		return Xopt;
 	}
@@ -376,6 +378,7 @@ solution Newton(matrix(*ff)(matrix, matrix, matrix), matrix(*gf)(matrix, matrix,
                 break;
             }
             X0 = X1;
+            cout << X0.x <<endl;
         }
 		return Xopt;
 	}

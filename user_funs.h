@@ -28,3 +28,4 @@ matrix Hf4T(matrix x, matrix ud1, matrix ud2);
 
 //lab 4 problem rzeczywisty
 matrix ff4R(matrix x, matrix ud1, matrix ud2);
+matrix gf4r(matrix x, matrix ud1, matrix ud2);
