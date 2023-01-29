@@ -1,6 +1,6 @@
 #include"user_funs.h"
 
-
+#define M_PI 3.14
 
 matrix ff(matrix x, matrix ud1, matrix ud2)
 {
@@ -165,10 +165,10 @@ matrix ff4R(matrix x, matrix ud1, matrix ud2) {
     static matrix X(n, m), Y(1, m);
     static bool read = true;
     if (read) {
-        ifstream S("XData.txt");
+        ifstream S("C:\\my_repos\\opty\\XData.txt");
         S >> X;
         S.close();
-        S.open(("Ydata.txt"));
+        S.open(("C:\\my_repos\\opty\\Ydata.txt"));
         S >> Y;
         S.close();
         read = false;
@@ -192,10 +192,10 @@ matrix gf4r(matrix x, matrix ud1, matrix ud2) {
     static matrix X(n, m), Y(1, m);
     static bool read = true;
     if (read) {
-        ifstream S("XData.txt");
+        ifstream S("C:\\my_repos\\opty\\XData.txt");
         S >> X;
         S.close();
-        S.open(("Ydata.txt"));
+        S.open(("C:\\my_repos\\opty\\Ydata.txt"));
         S >> Y;
         S.close();
         read = false;
